@@ -15,13 +15,6 @@ output "internet_gateway_id" {
   value = aws_internet_gateway.igw.id
 }
 
-############################
-# VPC
-############################
-output "vpc_id" {
-  description = "VPC ID (dev-vpc)"
-  value       = aws_vpc.this.id
-}
 
 ############################
 # Security Groups

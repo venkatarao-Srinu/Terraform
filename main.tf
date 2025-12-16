@@ -124,7 +124,7 @@ resource "aws_security_group" "dev_db_sg" {
 
 resource "aws_instance" "dev_web_1" {
   ami                         = data.aws_ami.amazon_linux_2.id
-  instance_type               = "t2.micro"
+  instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public[0].id   # public-subnet-1
   vpc_security_group_ids      = [aws_security_group.dev_web_sg.id]
   associate_public_ip_address = true
@@ -145,7 +145,7 @@ EOF
 
 resource "aws_instance" "dev_web_2" {
   ami                         = data.aws_ami.amazon_linux_2.id
-  instance_type               = "t2.micro"
+  instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public[1].id   # public-subnet-2
   vpc_security_group_ids      = [aws_security_group.dev_web_sg.id]
   associate_public_ip_address = true
@@ -184,7 +184,7 @@ resource "aws_db_instance" "dev_mysql" {
   allocated_storage       = 20
 
   username                = "admin"
-  password                = "admin"
+  password                = "test@9849"
 
   db_subnet_group_name    = aws_db_subnet_group.dev_db_subnet_group.name
   vpc_security_group_ids  = [aws_security_group.dev_db_sg.id]

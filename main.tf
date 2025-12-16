@@ -184,7 +184,7 @@ resource "aws_db_instance" "dev_mysql" {
   allocated_storage       = 20
 
   username                = "admin"
-  password                = "SET_PASSWORD"
+  password                = "admin"
 
   db_subnet_group_name    = aws_db_subnet_group.dev_db_subnet_group.name
   vpc_security_group_ids  = [aws_security_group.dev_db_sg.id]
@@ -195,5 +195,15 @@ resource "aws_db_instance" "dev_mysql" {
 
   tags = {
     Name = "dev-mysql-db"
+  }
+}
+
+data "aws_ami" "amazon_linux_2" {
+  most_recent = true
+  owners      = var.ami_owner
+
+  filter {
+    name   = "name"
+    values = [var.ami_name_filter]
   }
 }

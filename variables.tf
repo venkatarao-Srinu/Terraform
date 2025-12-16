@@ -33,3 +33,15 @@ variable "private_subnet_cidrs" {
     "172.0.12.0/24"
   ]
 }
+
+variable "ami_name_filter" {
+  description = "AMI name pattern for Amazon Linux 2"
+  type        = string
+  default     = "amzn2-ami-hvm-*-x86_64-gp2"
+}
+
+variable "ami_owner" {
+  description = "AMI owner account ID"
+  type        = list(string)
+  default     = ["amazon"]
+}

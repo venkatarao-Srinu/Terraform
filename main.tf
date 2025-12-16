@@ -86,13 +86,6 @@ resource "aws_security_group" "dev_web_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["MY_IP/32"]
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -135,7 +128,7 @@ resource "aws_instance" "dev_web_1" {
   subnet_id                   = aws_subnet.public[0].id   # public-subnet-1
   vpc_security_group_ids      = [aws_security_group.dev_web_sg.id]
   associate_public_ip_address = true
-  key_name                    = "YOUR_KEYPAIR"
+  key_name                    = "dynatrace-test"
 
   user_data = <<EOF
 #!/bin/bash
@@ -156,7 +149,7 @@ resource "aws_instance" "dev_web_2" {
   subnet_id                   = aws_subnet.public[1].id   # public-subnet-2
   vpc_security_group_ids      = [aws_security_group.dev_web_sg.id]
   associate_public_ip_address = true
-  key_name                    = "YOUR_KEYPAIR"
+  key_name                    = "dynatrace-test"
 
   user_data = <<EOF
 #!/bin/bash
